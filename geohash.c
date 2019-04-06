@@ -99,19 +99,22 @@ char* get_neighbor(char *hash, int direction) {
     
     int hash_length = strlen(hash);
     
-	char last_char = hash[hash_length - 1];
+    char last_char = hash[hash_length - 1];
     
     int is_odd = hash_length % 2;
     char **border = is_odd ? odd_borders : even_borders;
     char **neighbor = is_odd ? odd_neighbors : even_neighbors; 
     
-    char *base = malloc(sizeof(char) * 1);
+    char *base = malloc(sizeof(char) * hash_length + 1);
     base[0] = '\0';
     strncat(base, hash, hash_length - 1);
     
-	if(index_for_char(last_char, border[direction]) != -1)
-		base = get_neighbor(base, direction);
-    
+    if(index_for_char(last_char, border[direction]) != -1)
+    {
+        char *newBase = get_neighbor(base, direction);
+	free( base );
+	base = newBase;
+    }
     int neighbor_index = index_for_char(last_char, neighbor[direction]);
     last_char = char_map[neighbor_index];
         
