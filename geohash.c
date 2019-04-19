@@ -112,8 +112,8 @@ char* get_neighbor(char *hash, int direction) {
     if(index_for_char(last_char, border[direction]) != -1)
     {
         char *newBase = get_neighbor(base, direction);
-	free( base );
-	base = newBase;
+        strncpy( base , newBase , hash_length );
+	free( newBase );
     }
     int neighbor_index = index_for_char(last_char, neighbor[direction]);
     last_char = char_map[neighbor_index];
