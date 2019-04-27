@@ -95,7 +95,7 @@ unsigned int index_for_char(char c, char *string) {
     return index;
 }
 
-char* get_neighbor(char *hash, int direction) {
+char* get_neighbor(const char *hash, int direction) {
     
     int hash_length = strlen(hash);
     
@@ -245,7 +245,7 @@ GeoCoord geohash_decode(char *hash) {
 }
 
 
-char** geohash_neighbors(char *hash) {
+char** geohash_neighbors(const char *hash) {
 
     char** neighbors = NULL;
     
