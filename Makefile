@@ -3,8 +3,8 @@
 all: library test
 
 library:
-	gcc -c geohash.c -o geohash.o
-	ar rcs libgeohash.a geohash.o
+	gcc -fPIC -c geohash.c -o geohash.o
+	gcc -shared -o libgeohash.so geohash.o
 	rm geohash.o
 	
 test:
@@ -13,4 +13,4 @@ test:
 	rm a.out
 	
 clean: 
-	rm -rf *.a *.o
+	rm -rf *.a *.o *.so
